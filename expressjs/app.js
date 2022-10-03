@@ -2,47 +2,18 @@ const express = require("express");
 const app = express();
 
 const bodyParser = require("body-parser");
+const adminRoutes = require("./routes/admin");
+const shopRoutes = require("./routes/shop");
 
 // to parse json request
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(adminRoutes);
+app.use(shopRoutes);
 
-app.use("/", (req, res, next) => {
-  console.log("this always run");
-  // next();
-  res.send("Hello from express");
-});
-
-app.use("/add-product", (req, res, next) => {
-  console.log("In the middleware");
-  // const product = {
-  //   name: "Hp",
-  //   price: 24000000,
-  // };
-
-  res.send(`<form action="/product" method="POST">
-    <input type="text" name="title">
-      <button type="submit">
-        Add Product
-      </button>
-    </input>
-  </form>`); // allows the request to continue to the next middleware in line
-});
-
-app.use("/product", (req, res, next) => {
-  console.log(req.body);
-  res.redirect("/");
-});
-
-app.use("/users", (req, res, next) => {
-  console.log("Another middleware");
-  // ....
-  // return a respons => res.send()
-
-  const users = {
-    name: "Adi Handsome",
-    age: 23,
-  };
-  res.send(users);
+app.use((req, res, next) => {
+  res.status(404).send(`
+  <h1> Page Not Found! </h1>
+  `);
 });
 
 app.listen(3000);
