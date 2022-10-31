@@ -1,0 +1,23 @@
+cara install module npm
+npm init
+
+// package node.js
+npm install superheroes
+
+// paket express.js
+npm install express --save
+
+// install nodemon
+npm install -g nodemon -> supaya tinggal refresh jalanin express
+npm install --save-dev nodemon -> cara lain
+"scripts": {
+    "serve": "nodemon app.js"
+  },
+
+npm run serve
+
+npm install ejs -> template engine
+ 
+
+<%= %> -> cara menggunakan ejs di html
+
